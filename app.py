@@ -4,6 +4,17 @@ import os
 import fitz  # PyMuPDF
 from io import StringIO
 
+import streamlit.components.v1 as components
+
+# Inject Microsoft Clarity script
+components.html(
+    """
+   <script type="text/javascript">     (function(c,l,a,r,i,t,y){         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);     })(window, document, "clarity", "script", "sxl6m7cx0w"); </script>
+    """,
+    height=0,
+)
+
+
 DATA_FILE = "knowledge_data.json"
 
 if os.path.exists(DATA_FILE):
@@ -81,3 +92,4 @@ with tab3:
         st.markdown(f"**Q: {faq['question']}**")
         st.markdown(f"A: {faq['answer']}")
         st.markdown("---")
+
